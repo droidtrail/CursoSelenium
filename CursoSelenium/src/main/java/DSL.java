@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +34,16 @@ public class DSL {
 
 	/********* Radio e Check ************/
 
+	public void clicarRadio(By id) {
+		driver.findElement(id).click();
+	}
 	public void clicarRadio(String id) {
-		driver.findElement(By.id(id)).click();
+		clicarRadio(By.id(id));
+		
+	}
+	
+	public boolean isRadioMarcado(By id) {
+		return driver.findElement(id).isSelected();
 	}
 
 	public boolean isRadioMarcado(String id) {
@@ -219,3 +228,4 @@ public class DSL {
 		return idColuna;
 	}
 }
+
