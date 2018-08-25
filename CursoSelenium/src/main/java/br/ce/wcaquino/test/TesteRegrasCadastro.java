@@ -1,3 +1,4 @@
+package br.ce.wcaquino.test;
 import static br.ce.wcaquino.core.DriverFactory.getDriver;
 import static br.ce.wcaquino.core.DriverFactory.killDriver;
 
@@ -15,6 +16,7 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 import br.ce.wcaquino.core.DSL;
+import br.ce.wcaquino.page.CampoTreinamentoPage;
 
 @RunWith(Parameterized.class)
 public class TesteRegrasCadastro {

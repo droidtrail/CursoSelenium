@@ -1,3 +1,4 @@
+package br.ce.wcaquino.test;
 import static br.ce.wcaquino.core.DriverFactory.getDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -17,8 +18,7 @@ import br.ce.wcaquino.core.DSL;
 import br.ce.wcaquino.core.DriverFactory;
 
 public class TesteSincronismo {
-
-	private WebDriver driver;
+	
 	private DSL dsl;
 
 	@Before
@@ -27,11 +27,6 @@ public class TesteSincronismo {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		getDriver().manage().window().setSize(new Dimension(1200, 765));
 		dsl = new DSL();
-	}
-
-	@After
-	public void finaliza() {
-		//getDriver().quit();
 	}
 
 	@Test

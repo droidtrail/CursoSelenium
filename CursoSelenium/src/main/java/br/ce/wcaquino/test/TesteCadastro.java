@@ -1,3 +1,4 @@
+package br.ce.wcaquino.test;
 import static br.ce.wcaquino.core.DriverFactory.getDriver;
 import static br.ce.wcaquino.core.DriverFactory.killDriver;
 
@@ -6,7 +7,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TesteCadastro {
+import br.ce.wcaquino.core.BaseTest;
+import br.ce.wcaquino.page.CampoTreinamentoPage;
+
+public class TesteCadastro extends BaseTest {
 	
 	private CampoTreinamentoPage page;
 
@@ -17,11 +21,6 @@ public class TesteCadastro {
 		page = new CampoTreinamentoPage();
 	}
 	
-	@After
-	public void finaliza(){
-		killDriver();
-	}
-
 	@Test
 	public void deveRealizarCadastroComSucesso(){
 		page.setNome("Wagner");
