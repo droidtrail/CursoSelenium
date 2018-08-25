@@ -1,3 +1,5 @@
+import static br.ce.wcaquino.core.DriverFactory.getDriver;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -11,6 +13,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import br.ce.wcaquino.core.DSL;
+import br.ce.wcaquino.core.DriverFactory;
+
 public class TesteSincronismo {
 
 	private WebDriver driver;
@@ -18,35 +23,34 @@ public class TesteSincronismo {
 
 	@Before
 	public void inicializa() {
-		System.setProperty("webdriver.gecko.driver", "e:\\GeckoDriver\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		driver.manage().window().setSize(new Dimension(1200, 765));
-		dsl = new DSL(driver);
+		
+		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		getDriver().manage().window().setSize(new Dimension(1200, 765));
+		dsl = new DSL();
 	}
 
 	@After
 	public void finaliza() {
-		//driver.quit();
+		//getDriver().quit();
 	}
 
 	@Test
 	public void deveUtilizarEsperaImplicita() {
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		dsl.clicarBotao("buttonDelay");
 		dsl.escrever("novoCampo", "Leandro");
-		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		getDriver().manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 	}
-	@Test
-	public void deveInteragirComRespostaDemorada() {
-		
-		dsl.clicarBotao("buttonDelay");
-		dsl.escrever("novoCampo", "Leandro");
-	}
+//	@Test
+//	public void deveInteragirComRespostaDemorada() {
+//		
+//		dsl.clicarBotao("buttonDelay");
+//		dsl.escrever("novoCampo", "Leandro");
+//	}
 	@Test
 	public void deveUtilizarEsperaExplicita() {
 		dsl.clicarBotao("buttonDelay");
-		WebDriverWait wait = new WebDriverWait(driver,30);
+		WebDriverWait wait = new WebDriverWait(getDriver(),30);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("novoCampo")));
 		dsl.escrever("novoCampo", "Leandro");
 	}
