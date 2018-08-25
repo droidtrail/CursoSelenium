@@ -15,11 +15,13 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+import br.ce.wcaquino.core.BasePage;
+import br.ce.wcaquino.core.BaseTest;
 import br.ce.wcaquino.core.DSL;
 import br.ce.wcaquino.page.CampoTreinamentoPage;
 
 @RunWith(Parameterized.class)
-public class TesteRegrasCadastro {
+public class TesteRegrasCadastro extends BaseTest {
 
 	private DSL dsl;
 	private CampoTreinamentoPage page;
@@ -44,11 +46,6 @@ public class TesteRegrasCadastro {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL();
 		page = new CampoTreinamentoPage();
-	}
-	
-	@After
-	public void finaliza(){
-		killDriver();
 	}
 	
 	@Parameters
